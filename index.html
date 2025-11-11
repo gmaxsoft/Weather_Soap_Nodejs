@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Klienta SOAP - Pogoda</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h2>🌩️ Prognoza Pogody (SOAP Demo Express)</h2>
+    <p>Wpisz kod pocztowy USA, aby pobrać prognozę (np. **02110**):</p>
+    <form id="weather-form">
+        <label for="zip-code">Kod Pocztowy (ZIP):</label>
+        <input type="text" id="zip-code" name="zip" required maxlength="5" pattern="\d{5}" value="02110">
+        <button type="submit">Pobierz Pogodę</button>
+    </form>
+    <div id="result">
+        Oczekiwanie na dane...
+    </div>
+    <script>
+        document.getElementById('weather-form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const zip = document.getElementById('zip-code').value;
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = `Ładowanie danych SOAP dla kodu ${zip}...`;
+
+            try {
+                // Wywołanie endpointu REST na serwerze Express, który to robi za nas żądanie SOAP
+                const response = await fetch('/api/weather?zip=' + zip);
+                const data = await response.json();
+
+                if (!response.ok) {
+                    // Obsługa błędów zwróconych przez nasz serwer Express
+                    throw new Error(data.error || 'Nieznany błąd serwera.');
+                }
+
+                // Formatowanie i wyświetlanie wyniku
+                resultDiv.textContent = `
+Miasto: ${data.City}
+Stan: ${data.State}
+---
+Warunki: ${data.Description}
+Temperatura: ${data.Temperature}°F
+                `;
+
+            } catch (error) {
+                resultDiv.textContent = '❌ Wystąpił błąd: ' + error.message;
+            }
+        });
+    </script>
+</body>
+
+</html>
