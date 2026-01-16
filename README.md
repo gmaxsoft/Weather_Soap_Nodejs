@@ -1,10 +1,3 @@
-Absolutnie\! Stworzę plik `README.md` z kompletnymi instrukcjami, opisem projektu i sekcją uruchomieniową, gotowy do umieszczenia na GitHubie. 🚀
-
------
-
-## 📝 Plik: `README.md`
-
-````markdown
 # 🌩️ SOAP Client Demo: Node.js (Express) + Publiczne API Pogodowe
 
 Ten projekt jest edukacyjnym demo, demonstrującym, jak stworzyć klienta **SOAP** w środowisku **Node.js** (wykorzystując framework **Express.js**) i opakować go, aby mógł być łatwo wywoływany przez prosty formularz **HTML5** w przeglądarce.
@@ -15,10 +8,18 @@ Użyta usługa SOAP to publiczne, darmowe API pogodowe (Global Weather by CDYNE)
 
 ## ⚙️ Technologia
 
-* **Backend:** Node.js (Express.js)
-* **Klient SOAP:** `soap` library
-* **Frontend:** HTML5, CSS, Vanilla JavaScript (Fetch API)
-* **Publiczne API SOAP:** `http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL`
+### Backend
+* **Node.js** - środowisko uruchomieniowe JavaScript
+* **Express.js** (v5.1.0) - framework webowy do tworzenia API REST
+* **soap** (v1.6.0) - biblioteka do komunikacji z usługami SOAP/WSDL
+
+### Frontend
+* **HTML5** - struktura strony internetowej
+* **CSS** - style wizualne interfejsu
+* **Vanilla JavaScript** - logika kliencka z wykorzystaniem Fetch API do komunikacji z backendem
+
+### API
+* **Publiczne API SOAP:** Global Weather by CDYNE (`http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL`)
 
 ---
 
@@ -45,7 +46,7 @@ Przejdź do katalogu projektu i zainstaluj wymagane pakiety:
 
 ```bash
 npm install express soap
-````
+```
 
 ### 3\. Uruchomienie Serwera
 
@@ -92,6 +93,3 @@ soap.createClient(wsdlUrl, (err, client) => {
 ```
 
 Ten mechanizm skutecznie ukrywa złożoność komunikacji SOAP i XML przed front-endem, czyniąc go łatwym w użyciu przez standardowe żądanie **REST/Fetch API**.
-
-```
-```
